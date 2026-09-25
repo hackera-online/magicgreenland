@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="bg-bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Magic Green Land — Озеленяване и градински дизайн</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1D2A1B; --paper:#F1ECDD; --ochre:#C98A2B; --brick:#8B4A32; --sage:#707A63;
+    --paper-soft:#E9E2CE;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:2rem;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif; line-height:1.55;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; letter-spacing:-0.01em;}
+  a{color:inherit;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 1.5rem;}
+  header{position:sticky; top:0; background:var(--paper); z-index:10; border-bottom:1px solid var(--paper-soft);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; max-width:1100px; margin:0 auto;}
+  .logo{font-family:'Fraunces',serif; font-size:1.25rem; font-weight:600;}
+  .phone{font-weight:600; text-decoration:none; border-bottom:2px solid var(--ochre);}
+
+  .hero{padding:4.5rem 0 3.5rem; display:grid; grid-template-columns:1.1fr 0.9fr; gap:2rem; align-items:center;}
+  .hero h1{font-size:clamp(2.2rem,4.2vw,3.4rem); line-height:1.08;}
+  .hero p{max-width:38ch; margin-top:1.2rem; font-size:1.08rem; color:#3a4536;}
+  .hero .cta{display:inline-block; margin-top:1.8rem; background:var(--brick); color:var(--paper); padding:0.85rem 1.6rem; text-decoration:none; font-weight:600; transition:transform .25s ease, box-shadow .25s ease;}
+  .hero .cta:hover{transform:translateY(-2px); box-shadow:0 14px 28px -14px rgba(139,74,50,.55);}
+  .stage{position:relative; perspective:1200px;}
+  .stage-tilt{transition:transform .25s ease-out; transform-style:preserve-3d; will-change:transform;}
+  svg.leaf{width:100%; height:auto; display:block; filter:drop-shadow(0 18px 30px rgba(29,42,27,.15));}
+  .float-chip{position:absolute; right:6%; top:8%; background:var(--paper); border:1px solid var(--paper-soft); border-radius:12px; padding:0.6rem 0.9rem; box-shadow:0 20px 40px -18px rgba(29,42,27,.35); font-size:0.78rem; font-weight:600; transform:translateZ(60px); animation:bob 6s ease-in-out infinite alternate;}
+  .float-chip span{display:block; color:var(--sage); font-weight:500; font-size:0.72rem; margin-top:0.1rem;}
+  @keyframes bob{from{transform:translateZ(60px) translateY(0);} to{transform:translateZ(60px) translateY(-10px);}}
+
+  section{padding:3.5rem 0; border-top:1px solid var(--paper-soft);}
+  .eyebrow{color:var(--sage); font-size:0.95rem; margin-bottom:0.6rem;}
+  .intro-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:2.5rem;}
+  .intro-grid h2{font-size:clamp(1.6rem,2.6vw,2.1rem);}
+  .stats{display:flex; gap:2.5rem; margin-top:1.8rem; flex-wrap:wrap;}
+  .stat b{font-family:'Fraunces',serif; font-size:2rem; display:block; color:var(--brick);}
+  .stat span{color:var(--sage); font-size:0.92rem;}
+
+  .services{display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem; perspective:1200px;}
+  .service{background:var(--paper); border:1px solid var(--paper-soft); border-radius:14px; padding:1.5rem; transition:transform .15s ease-out, box-shadow .25s ease; transform-style:preserve-3d; will-change:transform;}
+  .service:hover{box-shadow:0 24px 40px -22px rgba(29,42,27,.25);}
+  .service h3{font-size:1.15rem; color:var(--ink);}
+  .service p{margin:0.5rem 0 0; color:#3a4536; max-width:60ch; font-size:0.95rem;}
+
+  .why{background:var(--ink); color:var(--paper);}
+  .why .wrap{display:grid; grid-template-columns:1fr 1fr; gap:2rem;}
+  .why h2{font-size:clamp(1.6rem,2.6vw,2.1rem); color:var(--paper);}
+  .why ul{padding-left:1.1rem; margin:0;}
+  .why li{margin-bottom:0.7rem;}
+
+  .quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;}
+  .quote{border-top:3px solid var(--ochre); padding-top:1rem;}
+  .quote p{font-style:italic; color:#3a4536;}
+  .quote cite{display:block; margin-top:0.7rem; font-style:normal; font-weight:600; font-size:0.92rem;}
+
+  .cta-final{background:var(--ochre); text-align:left;}
+  .cta-final .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;}
+  .cta-final h2{font-size:clamp(1.5rem,2.6vw,2.1rem);}
+  .cta-final a.btn{background:var(--ink); color:var(--paper); padding:0.9rem 1.7rem; text-decoration:none; font-weight:600; white-space:nowrap;}
+
+  footer{padding:2rem 0; font-size:0.9rem; color:var(--sage);}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;}
+
+  /* --- AI assistant demo --- */
+  .assistant{background:var(--ink); color:var(--paper);}
+  .assistant .eyebrow{color:var(--ochre);}
+  .assistant-grid{display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start;}
+  .assistant h2{color:var(--paper); font-size:clamp(1.6rem,2.6vw,2.1rem);}
+  .assistant-lead{color:#cfd3c6; margin-top:0.8rem; max-width:42ch;}
+  .chat-card{background:#232f20; border:1px solid #34412f; border-radius:14px; overflow:hidden; box-shadow:0 30px 60px -30px rgba(0,0,0,.6);}
+  .chat-top{display:flex; align-items:center; gap:0.7rem; padding:0.9rem 1.1rem; background:linear-gradient(135deg,var(--brick),#5c3220); color:var(--paper);}
+  .chat-top .av{width:34px; height:34px; border-radius:50%; background:var(--ochre); color:var(--ink); display:grid; place-items:center; font-family:'Fraunces',serif; font-weight:600; flex:none;}
+  .chat-top .nm{font-weight:600; font-size:0.92rem; line-height:1.2;}
+  .chat-top .sb{font-size:0.75rem; opacity:.8;}
+  .chat-top .st{margin-left:auto; font-size:0.75rem; display:flex; align-items:center; gap:0.4rem;}
+  .chat-top .st i{width:6px; height:6px; border-radius:50%; background:var(--ochre); display:inline-block;}
+  .chat-body{min-height:250px; padding:1rem 1rem; display:flex; flex-direction:column; gap:0.55rem;}
+  .bub{max-width:82%; padding:0.55rem 0.85rem; border-radius:14px; font-size:0.88rem; line-height:1.45; opacity:0; transform:translateY(6px); animation:bub .35s ease forwards;}
+  @keyframes bub{to{opacity:1; transform:none;}}
+  .bub.v{align-self:flex-end; background:var(--ochre); color:var(--ink); border-bottom-right-radius:4px; font-weight:600;}
+  .bub.a{align-self:flex-start; background:#2d3a29; border:1px solid #3c4a37; border-bottom-left-radius:4px;}
+  .dots{align-self:flex-start; display:flex; gap:4px; padding:0.7rem 0.85rem; background:#2d3a29; border:1px solid #3c4a37; border-radius:14px; opacity:0; animation:bub .25s ease forwards;}
+  .dots i{width:5px; height:5px; border-radius:50%; background:#aab29c; animation:blink 1.1s infinite;}
+  .dots i:nth-child(2){animation-delay:.15s;} .dots i:nth-child(3){animation-delay:.3s;}
+  @keyframes blink{0%,80%,100%{opacity:.25;} 40%{opacity:1;}}
+  .chat-foot{padding:0.7rem 1rem; border-top:1px solid #34412f; display:flex; gap:0.6rem; align-items:center;}
+  .chat-foot .fi{flex:1; background:#2d3a29; border:1px solid #3c4a37; border-radius:999px; padding:0.5rem 0.9rem; font-size:0.82rem; color:#9aa38d;}
+  .replay{background:transparent; border:1px solid var(--ochre); color:var(--ochre); border-radius:999px; padding:0.5rem 0.9rem; font-size:0.78rem; font-weight:600; cursor:pointer; display:none;}
+  .lead-card{margin-top:1.3rem; background:#232f20; border:1px solid #34412f; border-radius:14px; padding:1rem 1.1rem; opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
+  .lead-card.shown{opacity:1; transform:none;}
+  .lead-card .lh{font-size:0.78rem; color:var(--ochre); font-weight:600; margin-bottom:0.6rem;}
+  .lead-row{display:flex; justify-content:space-between; font-size:0.85rem; padding:0.4rem 0; border-bottom:1px dashed #3c4a37;}
+  .lead-row:last-child{border-bottom:none;}
+  .lead-row span:first-child{color:#9aa38d;}
+
+  @media(max-width:820px){ .assistant-grid{grid-template-columns:1fr;} }
+
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.on{opacity:1; transform:none;}
+
+  @media(max-width:820px){
+    .hero{grid-template-columns:1fr; padding-top:3rem;}
+    .intro-grid, .why .wrap{grid-template-columns:1fr;}
+    .services{grid-template-columns:1fr;}
+    .quotes{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .float-chip{animation:none;}
+  }
+  @media(prefers-reduced-motion:no-preference){
+    .hero h1, .hero p, .hero .cta{animation:rise 0.7s ease both;}
+    .hero p{animation-delay:0.1s;} .hero .cta{animation-delay:0.2s;}
+    @keyframes rise{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Magic&nbsp;Green&nbsp;Land</div>
+    <a class="phone" href="tel:0887791637">0887 79 16 37</a>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <div>
+    <h1>Градината започва като идея на хартия. Ние я довеждаме до корен в почвата.</h1>
+    <p>Проектиране, изграждане и озеленяване на дворове и градини в София — от първата скица до последния засаден храст.</p>
+    <a class="cta" href="tel:0887791637">Обадете се за консултация</a>
+  </div>
+  <div class="stage" id="stage">
+    <div class="stage-tilt" id="stageTilt">
+      <svg class="leaf" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M40 220C60 140 120 60 220 40" stroke="#8B4A32" stroke-width="2"/>
+        <path d="M60 210C110 190 150 150 165 100" stroke="#707A63" stroke-width="1.5"/>
+        <path d="M90 130C110 118 130 100 138 78" stroke="#C98A2B" stroke-width="1.5"/>
+        <ellipse cx="145" cy="70" rx="16" ry="9" transform="rotate(-35 145 70)" stroke="#1D2A1B" stroke-width="1.5"/>
+        <ellipse cx="120" cy="105" rx="13" ry="7" transform="rotate(-25 120 105)" stroke="#1D2A1B" stroke-width="1.5"/>
+        <ellipse cx="95" cy="145" rx="11" ry="6" transform="rotate(-15 95 145)" stroke="#1D2A1B" stroke-width="1.5"/>
+        <circle cx="230" cy="35" r="4" fill="#C98A2B"/>
+      </svg>
+      <div class="float-chip">14+ години<span>опит в озеленяването</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap intro-grid">
+    <div>
+      <div class="eyebrow">За нас</div>
+      <h2>„Меджик Грийн Ленд" ЕООД</h2>
+    </div>
+    <div>
+      <p>Над 14 години проектираме и изграждаме дворове и градини — от малка градска тераса до цялостно озеленяване на имот. Работим на етапи, с ясна оферта и договор, така че знаете какво плащате и кога.</p>
+      <div class="stats">
+        <div class="stat"><b>14+</b><span>години опит</span></div>
+        <div class="stat"><b>2023–24</b><span>отличие „Златна фирма"</span></div>
+        <div class="stat"><b>0 лв.</b><span>консултация в София</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow">Какво правим</div>
+    <h2 style="font-size:clamp(1.6rem,2.6vw,2.1rem); margin-bottom:1.5rem;">Услуги за двора и градината</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Проектиране</h3>
+        <p>Проект за озеленяване, поливна система, вертикална планировка и терасиране — с 3D визуализация преди да се копае и една лопата пръст.</p>
+      </div>
+      <div class="service">
+        <h3>Изграждане</h3>
+        <p>Алпинеуми, скални кътове, сухи реки и езера, дренажни системи, декоративни настилки, алеи и стълби.</p>
+      </div>
+      <div class="service">
+        <h3>Озеленяване и затревяване</h3>
+        <p>Растителни групи, розариуми, зелени стаи — със затревяване чрез тревно семе, чим, хидропосев или изкуствена трева.</p>
+      </div>
+      <div class="service">
+        <h3>Поливни системи</h3>
+        <p>Автоматизирани системи, свързани към водопровод, кладенец или сондаж — за градина, която не изисква ежедневно внимание.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" style="color:#C98A2B;">Защо да изберете нас</div>
+      <h2>Пълен процес, без изненади по пътя</h2>
+    </div>
+    <ul>
+      <li>Безплатна консултация на място за обекти в София</li>
+      <li>Плащане на етапи — само за завършена и приета работа</li>
+      <li>Договори, оферти и количествени сметки за всеки проект</li>
+      <li>Възможност за разсрочено изграждане в годините</li>
+    </ul>
+  </div>
+</section>
+
+<section class="assistant" id="assistant">
+  <div class="wrap assistant-grid">
+    <div>
+      <div class="eyebrow">AI асистент</div>
+      <h2>Клиентът си запазва консултация сам, в чата</h2>
+      <p class="assistant-lead">Вместо да чака имейл, асистентът пита за обекта, предлага свободен час и записва безплатната консултация веднага.</p>
+      <div class="lead-card" id="leadCard">
+        <div class="lh">Нова заявка</div>
+        <div class="lead-row"><span>Обект</span><span>Двор, 400 кв.м</span></div>
+        <div class="lead-row"><span>Услуга</span><span>Безплатна консултация</span></div>
+        <div class="lead-row"><span>Дата и час</span><span>Вторник, 10:00</span></div>
+        <div class="lead-row"><span>Локация</span><span>София</span></div>
+      </div>
+    </div>
+    <div class="chat-card">
+      <div class="chat-top">
+        <span class="av">MG</span>
+        <div><div class="nm">Асистент на Magic Green Land</div><div class="sb">на magicgreenland.com</div></div>
+        <span class="st"><i></i>онлайн</span>
+      </div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-foot">
+        <div class="fi">Напишете съобщение…</div>
+        <button class="replay" id="replayBtn" type="button">Пусни отново</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="eyebrow">Отзиви</div>
+    <h2 style="font-size:clamp(1.6rem,2.6vw,2.1rem); margin-bottom:1.8rem;">Какво казват клиентите</h2>
+    <div class="quotes">
+      <div class="quote">
+        <p>„Превърнаха двора ни от запуснато място в градина, озеленена и поддържана на най-високо ниво."</p>
+        <cite>— Яна Маджарова</cite>
+      </div>
+      <div class="quote">
+        <p>„Коректни, изпълнителни, с внимание към всяко изискване и всеки детайл."</p>
+        <cite>— Лорита Иванова</cite>
+      </div>
+      <div class="quote">
+        <p>„Решение за поливна система за един ден, без разкопаване на градината. Ясна комуникация през целия процес."</p>
+        <cite>— Вихра Динчева</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Готови да преобразите двора си?</h2>
+    <a class="btn" href="tel:0887791637">0887 79 16 37</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© Magic Green Land</span>
+    <span>office@magicgreenland.com</span>
+  </div>
+</footer>
+
+<script>
+  var script = [
+    {w:'v', t:'Здравейте! Търся фирма за озеленяване на двор в София.'},
+    {w:'a', t:'Здравейте! За какъв обект е — двор, тераса, цял имот?'},
+    {w:'v', t:'Къща с двор около 400 кв.м.'},
+    {w:'a', t:'Разбрано. Консултацията на място в София е безплатна. Кога Ви е удобно да огледаме?'},
+    {w:'v', t:'Някой ден следващата седмица.'},
+    {w:'a', t:'Мога да предложа вторник, 10:00 ч. Устройва ли Ви?'},
+    {w:'v', t:'Да, чудесно.'},
+    {w:'a', t:'Записах Ви за безплатна консултация, вторник 10:00. Наш специалист ще потвърди по телефона.'}
+  ];
+  var body = document.getElementById('chatBody');
+  var replayBtn = document.getElementById('replayBtn');
+  var leadCard = document.getElementById('leadCard');
+  var running = false;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function addBub(m){
+    var el = document.createElement('div');
+    el.className = 'bub ' + m.w;
+    el.textContent = m.t;
+    body.appendChild(el);
+  }
+  function run(){
+    if(running) return;
+    running = true;
+    body.innerHTML = '';
+    leadCard.classList.remove('shown');
+    replayBtn.style.display = 'none';
+    var i = 0;
+    function step(){
+      if(i >= script.length){ running = false; replayBtn.style.display = 'inline-block'; setTimeout(function(){leadCard.classList.add('shown');},200); return; }
+      var m = script[i];
+      if(reduced){ addBub(m); i++; step(); return; }
+      var dots = document.createElement('div'); dots.className = 'dots'; dots.innerHTML = '<i></i><i></i><i></i>';
+      body.appendChild(dots);
+      setTimeout(function(){
+        dots.remove(); addBub(m); i++;
+        setTimeout(step, m.w === 'a' ? 550 : 380);
+      }, m.w === 'a' ? 650 : 400);
+    }
+    step();
+  }
+  replayBtn.addEventListener('click', run);
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ setTimeout(run, 300); obs.unobserve(e.target); } });
+  }, {threshold:0.35});
+  obs.observe(document.getElementById('assistant'));
+</script>
+</body>
+</html>
